@@ -1,0 +1,6 @@
+# install docker 
+#
+
+- hosts: all
+  roles:
+    - role: install-docker
