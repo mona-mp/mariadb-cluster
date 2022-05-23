@@ -5,8 +5,24 @@
 - name: Update apt cache 
   become: true
   apt:
-    upgrade: yes
+    upgrade: "yes"
     update_cache: yes
     cache_valid_time: 86400 #Oneday
 
 
+- name: Upgrade all apt packages
+  apt:
+    upgrade: dist
+
+- name: Install dependencies
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages: 
+    - apt-transport-https
+    - ca-certificates
+    - curl 
+    - software-properties-common
+    - gnupg-agent
