@@ -1,0 +1,23 @@
+#prometheus docker container
+
+- name: make monitoring directory for prometheus
+  file:
+    path: /opt/prometheus/data
+    state: directory
+
+- name: add prometheus config
+  template:
+    src: prometheus.yml.j2
+    dest: /opt/prometheus/prometheus.yml
+
+- name: add docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/prometheus/docker-compose.yml
+
+- name: run prometheus container
+  docker_compose:
+    project_src: /opt/prometheus
+    build: no
+  register: output
+
