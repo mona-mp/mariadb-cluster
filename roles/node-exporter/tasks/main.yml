@@ -1,0 +1,18 @@
+#node exporter setup
+
+
+- name: make monitoring directory for node-exporter
+  file:
+    path: /opt/node-exporter/data
+    state: directory
+
+- name: add docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/node-exporter/docker-compose.yml
+
+- name: run prometheus container
+  docker_compose:
+    project_src: /opt/node-exporter
+    build: no
+  register: output
