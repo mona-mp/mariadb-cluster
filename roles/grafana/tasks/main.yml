@@ -1,0 +1,27 @@
+#run grafana
+
+- name: make monitoring directory for grafana
+  file:
+    path: /opt/grafana/data
+    state: directory
+
+- name: make monitoring directory for grafana
+  file:
+    path: /opt/grafana/provisioning/datasources
+    state: directory
+
+- name: add grafana datasource
+  template:
+    src: prometheus_ds.yml.j2
+    dest: /opt/grafana/provisioning/datasources/prometheus_ds.yml
+
+- name: add docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/grafana/docker-compose.yml
+
+- name: run grafana container
+  docker_compose:
+    project_src: /opt/grafana
+    build: no
+  register: output

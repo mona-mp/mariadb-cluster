@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  grafana:
+    user: root
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - /opt/monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - /opt/monitoring/grafana/data:/var/lib/grafana
