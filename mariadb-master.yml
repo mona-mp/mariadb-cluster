@@ -1,3 +1,3 @@
-- hosts: all
+- hosts: mariadb-master
   roles:
     - role: mariadb-master
