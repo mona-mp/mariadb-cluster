@@ -1,1 +1,6 @@
 mysql_root_pass: mypass
+master_ip: 188.121.109.207
+master_user: slave
+master_password: mypass
+master_port: 3306
+mariadb_image: mariadb:10.3

@@ -1,0 +1,36 @@
+[maxscale]
+
+threads = auto
+log_augmentation = 1
+ms_timestamp = 1
+
+
+[server1]
+type     = server
+address  = {{ master_ip }}
+port     = 3306
+protocol = MariaDBBackend
+
+[server2]
+type     = server
+address  = {{ slave01_ip }}
+port     = 3306
+protocol = MariaDBBackend
+
+[server3]
+type     = server
+address  = {{ slave02_ip  }}
+port     = 3306
+protocol = MariaDBBackend
+
+[monitor]
+type                    = monitor
+module                  = mariadbmon
+servers                 = server1,server2,server3
+user                    = {{ maxscale_user }}
+password                = {{ maxscale_pass }}
+auto_failover           = true
+auto_rejoin             = true
+enforce_read_only_slaves = 1
+
+

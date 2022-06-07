@@ -1,0 +1,22 @@
+#maxscale set up
+
+- name: make maxscale  directory 
+  file:
+    path: /opt/maxscale
+    state: directory
+
+- name: add maxscale config
+  template:
+    src: maxscale.cnf.j2
+    dest: /opt/maxscale/maxscale.cnf
+
+- name: add docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/maxscale/docker-compose.yml
+
+- name: run maxscale container
+  docker_compose:
+    project_src: /opt/maxscale
+    build: no
+  register: output

@@ -3,7 +3,7 @@ version: "3"
 services:
   grafana:
     user: root
-    image: grafana/grafana:latest
+    image: {{ grafana_image }}
     ports:
       - 3000:3000
     volumes:

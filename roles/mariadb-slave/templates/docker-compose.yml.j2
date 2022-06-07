@@ -2,11 +2,9 @@ version: "3"
 
 services:
   mariadb:
-    image: mariadb:10.3
+    image: {{ mariadb_image }}
     ports:
       - 3306:3306
- #   command: bash -c "
-  #    mysql -u root -p{{ mysql_root_pass }} "
    
     command: --init-file /etc/mysql/init.sql
     volumes:
@@ -15,5 +13,5 @@ services:
       - /opt/mariadb/my.cnf:/etc/mysql/my.cnf
       - /opt/mariadb/log:/var/log/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=mypass
-      - MYSQL_PASSWORD=mypass
+      - MYSQL_ROOT_PASSWORD={{ mysql_root_pass }}
+      - MYSQL_PASSWORD={{ mysql_root_pass }}
