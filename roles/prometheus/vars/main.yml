@@ -1,2 +1,2 @@
-
+prometheus_image: prom/prometheus:v2.36.0
 node_exporters_ips: "188.121.111.85:9100"

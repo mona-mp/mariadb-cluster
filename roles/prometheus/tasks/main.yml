@@ -10,6 +10,11 @@
     src: prometheus.yml.j2
     dest: /opt/prometheus/prometheus.yml
 
+- name: add prometheus targets
+  template:
+    src: targets.json.j2
+    dest: /opt/prometheus/targets.json    
+
 - name: add docker-compose file
   template:
     src: docker-compose.yml.j2
