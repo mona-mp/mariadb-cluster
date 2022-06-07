@@ -1,0 +1,9 @@
+#CREATE USER 'slave'@'%' IDENTIFIED BY 'mypass';
+#GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%';
+#CREATE USER 'maxscale'@'%' IDENTIFIED BY 'mypass’;
+#GRANT ALL PRIVILEGES ON *.* TO 'maxscale'@'%';
+CREATE USER
+  'slave'@'%' IDENTIFIED BY 'mypass',
+  'maxscale'@'%' IDENTIFIED BY 'mypass';
+GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'maxscale'@'%';

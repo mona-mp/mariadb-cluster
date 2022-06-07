@@ -1,0 +1,28 @@
+#mariadb master slave set up 
+
+- name: make mariadb cluster directory 
+  file:
+    path: /opt/mariadb/data
+    state: directory
+
+- name: mariadb config file
+  template:
+    src: my.cnf.j2
+    dest: /opt/mariadb/my.cnf
+
+- name: mariadb init file
+  template:
+    src: init.sql.j2
+    dest: /opt/mariadb/init.sql  
+
+
+- name: add docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/mariadb/docker-compose.yml
+
+- name: run mariadb container
+  docker_compose:
+    project_src: /opt/mariadb
+    build: no
+  register: output    
