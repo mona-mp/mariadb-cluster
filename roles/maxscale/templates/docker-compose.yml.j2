@@ -2,6 +2,7 @@ version: "3"
 
 services:
   maxscale:
+    container_name: {{ container_name }}
     image: {{ maxscale_image }}
     ports:
       - 8989:8989 #RestApiPort

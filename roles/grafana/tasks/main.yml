@@ -5,15 +5,30 @@
     path: /opt/grafana/data
     state: directory
 
-- name: make monitoring directory for grafana
+- name: make provisioning directory for grafana
   file:
     path: /opt/grafana/provisioning/datasources
+    state: directory
+
+- name: make dashboards directory for grafana
+  file:
+    path: /opt/grafana/provisioning/dashboards
     state: directory
 
 - name: add grafana datasource
   template:
     src: prometheus_ds.yml.j2
     dest: /opt/grafana/provisioning/datasources/prometheus_ds.yml
+
+- name: add grafana dashboard config
+  template:
+    src: dashboards.yml.j2
+    dest: /opt/grafana/provisioning/dashboards/dashboards.yml
+
+    #- name: add node-exporter dashboard json
+    # template:
+    # src: nodeexporter.json
+    #  dest: /opt/grafana/provisioning/dashboards/node-exporter-dashboard.json
 
 - name: add docker-compose file
   template:

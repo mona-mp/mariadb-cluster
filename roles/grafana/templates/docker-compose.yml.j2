@@ -2,10 +2,13 @@ version: "3"
 
 services:
   grafana:
+    container_name: {{ container_name }}
     user: root
     image: {{ grafana_image }}
     ports:
       - 3000:3000
     volumes:
-      - /opt/monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-      - /opt/monitoring/grafana/data:/var/lib/grafana
+      - /opt/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - /opt/grafana/data:/var/lib/grafana
+      - /opt/grafana/provisioning/dashboards:/var/lib/grafana/dashboards
+      - /opt/grafana/provisioning/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboard.yaml

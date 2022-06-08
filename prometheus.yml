@@ -1,3 +1,4 @@
-- hosts: all
+- hosts: monitoring
+  become: yes
   roles:
     - role: prometheus

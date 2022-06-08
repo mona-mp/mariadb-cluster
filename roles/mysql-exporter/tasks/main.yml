@@ -1,0 +1,17 @@
+#run mysql-exporter
+
+- name: make mysql-exporter directory 
+  file:
+    path: /opt/mysql-exporter
+    state: directory
+
+- name: add docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/mysql-exporter/docker-compose.yml
+
+- name: run mysql-exporter container
+  docker_compose:
+    project_src: /opt/mysql-exporter
+    build: no
+  register: output

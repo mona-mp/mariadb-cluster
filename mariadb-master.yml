@@ -1,3 +1,4 @@
 - hosts: mariadb-master
+  become: yes
   roles:
     - role: mariadb-master

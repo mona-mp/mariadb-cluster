@@ -1,9 +1,8 @@
-#CREATE USER 'slave'@'%' IDENTIFIED BY 'mypass';
-#GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%';
-#CREATE USER 'maxscale'@'%' IDENTIFIED BY 'mypass’;
-#GRANT ALL PRIVILEGES ON *.* TO 'maxscale'@'%';
 CREATE USER
   'slave'@'%' IDENTIFIED BY 'mypass',
-  'maxscale'@'%' IDENTIFIED BY 'mypass';
+  'maxscale'@'%' IDENTIFIED BY 'mypass',
+  'exporter'@'%' IDENTIFIED BY 'mypass';
 GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%';
 GRANT ALL PRIVILEGES ON *.* TO 'maxscale'@'%';
+GRANT PROCESS, REPLICATION CLIENT ON *.* TO 'exporter'@'%';
+GRANT SELECT ON performance_schema.* TO 'exporter'@'%';

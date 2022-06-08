@@ -1,3 +1,4 @@
 maxscale_user: maxscale
 maxscale_pass: mypass
 maxscale_image: mariadb/maxscale:6.3.1
+container_name: maxscale

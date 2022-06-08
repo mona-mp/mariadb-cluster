@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  mysql-exporter:
+    container_name: {{ container_name }}
+    user: root
+    image: {{ mysql_exporter_image }}
+    ports:
+      - 9104:9104
+    environment:
+      - DATA_SOURCE_NAME="{{ mysql_exporter_user }}:{{ mysql_exporter_pass }}@({{ mariadb_container_name }}:3306)"

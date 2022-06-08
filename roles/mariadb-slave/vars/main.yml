@@ -4,3 +4,4 @@ master_user: slave
 master_password: mypass
 master_port: 3306
 mariadb_image: mariadb:10.3
+container_name: mariadb
