@@ -35,6 +35,10 @@
     src: node-exporter-dashboard.json
     dest: /opt/grafana/provisioning/dashboards/node-exporter-dashboard.json
 
+- copy:
+    src: mysql-exporter-dashboard.json
+    dest: /opt/grafana/provisioning/dashboards/mysql-exporter-dashboard.json
+
 - name: run grafana container
   docker_compose:
     project_src: /opt/grafana
