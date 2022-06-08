@@ -25,15 +25,15 @@
     src: dashboards.yml.j2
     dest: /opt/grafana/provisioning/dashboards/dashboards.yml
 
-    #- name: add node-exporter dashboard json
-    # template:
-    # src: nodeexporter.json
-    #  dest: /opt/grafana/provisioning/dashboards/node-exporter-dashboard.json
 
 - name: add docker-compose file
   template:
     src: docker-compose.yml.j2
     dest: /opt/grafana/docker-compose.yml
+
+- copy:      
+    src: node-exporter-dashboard.json
+    dest: /opt/grafana/provisioning/dashboards/node-exporter-dashboard.json
 
 - name: run grafana container
   docker_compose:

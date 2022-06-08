@@ -8,4 +8,4 @@ services:
     ports:
       - 9104:9104
     environment:
-      - DATA_SOURCE_NAME="{{ mysql_exporter_user }}:{{ mysql_exporter_pass }}@({{ mariadb_container_name }}:3306)"
+      - DATA_SOURCE_NAME={{ mysql_exporter_user }}:{{ mysql_exporter_pass }}@({{ server_ip }}:3306)/
