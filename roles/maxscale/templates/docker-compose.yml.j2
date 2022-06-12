@@ -2,10 +2,12 @@ version: "3"
 
 services:
   maxscale:
-    container_name: {{ container_name }}
+    container_name: maxscale
     image: {{ maxscale_image }}
     ports:
       - 8989:8989 #RestApiPort
+      - 4006:4006  # readwrite port
+      - 4008:4008  # readonly port
     volumes:
       - /opt/maxscale/maxscale.cnf:/etc/maxscale.cnf
     restart: always

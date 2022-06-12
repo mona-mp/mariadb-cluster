@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mariadb:
-    container_name: {{ container_name }}
+    container_name: mariadb
     image: {{ mariadb_image }}
     ports:
       - 3306:3306
@@ -14,5 +14,5 @@ services:
       - /opt/mariadb/my.cnf:/etc/mysql/my.cnf
       - /opt/mariadb/log:/var/log/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD={{ mysql_root_pass }}
-      - MYSQL_PASSWORD={{ mysql_root_pass }}
+      - MYSQL_ROOT_PASSWORD={{ mysql_root_password }}
+      - MYSQL_PASSWORD={{ mysql_root_password }}

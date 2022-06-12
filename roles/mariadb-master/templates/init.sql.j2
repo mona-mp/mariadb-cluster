@@ -1,7 +1,7 @@
 CREATE USER
-  'slave'@'%' IDENTIFIED BY 'mypass',
-  'maxscale'@'%' IDENTIFIED BY 'mypass',
-  'exporter'@'%' IDENTIFIED BY 'mypass';
+  'slave'@'%' IDENTIFIED BY '{{ mysql_users_password }}',
+  'maxscale'@'%' IDENTIFIED BY '{{ mysql_users_password }}',
+  'exporter'@'%' IDENTIFIED BY '{{ mysql_users_password }}';
 GRANT REPLICATION SLAVE ON *.* TO 'slave'@'%';
 GRANT ALL PRIVILEGES ON *.* TO 'maxscale'@'%';
 GRANT PROCESS, REPLICATION CLIENT ON *.* TO 'exporter'@'%';

@@ -33,4 +33,31 @@ auto_failover           = true
 auto_rejoin             = true
 enforce_read_only_slaves = 1
 
+[Read-Only-Service]
+type=service
+router=readconnroute
+servers=server1,server2,server3
+user=maxscale
+password={{ maxscale_pass }}
+router_options=slave
 
+
+[Read-Write-Service]
+type=service
+router=readwritesplit
+servers=server1,server2,server3
+user=maxscale
+password={{ maxscale_pass }}
+master_failure_mode=fail_on_write
+
+[Read-Only-Listener]
+type=listener
+service=Read-Only-Service
+protocol=MySQLClient
+port=4008
+
+[Read-Write-Listener]
+type=listener
+service=Read-Write-Service
+protocol=MySQLClient
+port=4006
