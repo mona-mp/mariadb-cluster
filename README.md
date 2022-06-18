@@ -35,3 +35,21 @@ This project contains two main modules: the MariaDB cluster and monitoring.
 - All automation must consider best practices and role base design
 - Use Ansible Vault to encrypt confidential information
 
+# Challenges
+1. The network interfaces for my servers are controlled by DHCP. The dhclient program          overwrote the /etc/resolv. conf file whenever the networking service was restarted, so      when I changed the nameservers on /etc/resolv. conf wasn't fixed. I solve this issue by     installing the resolvconf package.
+   To install this package and change nameservers on ubuntu 20.04, go through these steps  :
+    1. Update your package index using apt:
+     
+        ```sh
+         sudo apt update
+         ```
+    2. Install the resolvconf package using apt:
+        ```sh
+        sudo apt install  resolvconf
+        ```
+    3. Add the nameservers to /etc/resolvconf/resolv.conf.d/head .
+
+    4. Run the update scripts for this package :
+        ```sh
+        sudo resolvconf -u
+        ```
