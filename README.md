@@ -1,6 +1,6 @@
 # Mariaddb cluster and monitoring
 
-![mariadb-cluster](mariadb-cluster.png)
+![mariadb-cluster](bigpic.png)
 
 I follow these goals for this project:
 # Goals:
