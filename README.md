@@ -1,5 +1,7 @@
 # Mariaddb cluster and monitoring
 
+![mariadb-cluster](mariadb-cluster.png)
+
 I follow these goals for this project:
 # Goals:
 
