@@ -6,8 +6,7 @@ services:
     image: {{ maxscale_image }}
     ports:
       - 8989:8989 #RestApiPort
-      - 4006:4006  # readwrite port
-      - 4008:4008  # readonly port
+      - 3306:3306
     volumes:
       - /opt/maxscale/maxscale.cnf:/etc/maxscale.cnf
     restart: always
