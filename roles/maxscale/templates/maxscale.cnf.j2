@@ -10,18 +10,21 @@ type     = server
 address  = {{ master_ip }}
 port     = 3306
 protocol = MariaDBBackend
+proxy_protocol=yes
 
 [server2]
 type     = server
 address  = {{ slave01_ip }}
 port     = 3306
 protocol = MariaDBBackend
+proxy_protocol=yes
 
 [server3]
 type     = server
 address  = {{ slave02_ip  }}
 port     = 3306
 protocol = MariaDBBackend
+proxy_protocol=yes
 
 [monitor]
 type                    = monitor
@@ -33,31 +36,45 @@ auto_failover           = true
 auto_rejoin             = true
 enforce_read_only_slaves = 1
 
-[Read-Only-Service]
-type=service
-router=readconnroute
-servers=server1,server2,server3
-user=maxscale
-password={{ maxscale_pass }}
-router_options=slave
-
-
-[Read-Write-Service]
+[Splitter-Service]
 type=service
 router=readwritesplit
 servers=server1,server2,server3
-user=maxscale
+user={{ maxscale_user }}
 password={{ maxscale_pass }}
-master_failure_mode=fail_on_write
 
-[Read-Only-Listener]
+[Splitter-Listener]
 type=listener
-service=Read-Only-Service
-protocol=MySQLClient
-port=4008
+service=Splitter-Service
+protocol=MariaDBClient
+port=3306
 
-[Read-Write-Listener]
-type=listener
-service=Read-Write-Service
-protocol=MySQLClient
-port=4006
+
+#[Read-Only-Service]
+#type=service
+#router=readconnroute
+#servers=server1,server2,server3
+#user=maxscale
+#password={{ maxscale_pass }}
+#router_options=slave
+
+
+#[Read-Write-Service]
+#type=service
+#router=readwritesplit
+#servers=server1,server2,server3
+#user=maxscale
+#password={{ maxscale_pass }}
+#master_failure_mode=fail_on_write
+
+#[Read-Only-Listener]
+#type=listener
+#service=Read-Only-Service
+#protocol=MySQLClient
+#port=4008
+
+#[Read-Write-Listener]
+#type=listener
+#service=Read-Write-Service
+#protocol=MySQLClient
+#port=4006
